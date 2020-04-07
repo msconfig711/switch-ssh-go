@@ -6,6 +6,16 @@ import (
 	"time"
 )
 
+var LogLevel int
+
+const (
+	PANIC = 0
+	ERROR = 1
+	WARN  = 2
+	INFO  = 3
+	DEBUG = 4
+)
+
 const (
 	HUAWEI = "huawei"
 	H3C    = "h3c"
@@ -109,10 +119,24 @@ func filterResult(result, firstCmd string) string {
 	return filteredResult
 }
 
+func SetLogLevel(level int) {
+	LogLevel = level
+}
+
 func LogDebug(format string, a ...interface{}) {
-	fmt.Println("[DEBUG]:" + fmt.Sprintf(format, a...))
+	if LogLevel <= DEBUG {
+		fmt.Println("[DEBUG]:" + fmt.Sprintf(format, a...))
+	}
+}
+
+func LogInfo(format string, a ...interface{}) {
+	if LogLevel <= INFO {
+		fmt.Println("[INFO]:" + fmt.Sprintf(format, a...))
+	}
 }
 
 func LogError(format string, a ...interface{}) {
-	fmt.Println("[ERROR]:" + fmt.Sprintf(format, a...))
+	if LogLevel <= ERROR {
+		fmt.Println("[ERROR]:" + fmt.Sprintf(format, a...))
+	}
 }
