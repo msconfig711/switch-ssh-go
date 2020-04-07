@@ -124,19 +124,19 @@ func SetLogLevel(level int) {
 }
 
 func LogDebug(format string, a ...interface{}) {
-	if LogLevel <= DEBUG {
+	if LogLevel >= DEBUG {
 		fmt.Println("[DEBUG]:" + fmt.Sprintf(format, a...))
 	}
 }
 
 func LogInfo(format string, a ...interface{}) {
-	if LogLevel <= INFO {
+	if LogLevel >= INFO {
 		fmt.Println("[INFO]:" + fmt.Sprintf(format, a...))
 	}
 }
 
 func LogError(format string, a ...interface{}) {
-	if LogLevel <= ERROR {
+	if LogLevel >= ERROR {
 		fmt.Println("[ERROR]:" + fmt.Sprintf(format, a...))
 	}
 }
